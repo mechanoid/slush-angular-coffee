@@ -1,0 +1,17 @@
+{
+  "name": "<%= appname %>",
+  "version": "0.0.1",
+  "description": "some test project",
+  "main": "javascripts/dist/app.js",
+  "dependencies": {
+    "coffee-script": "~1.7.1",
+    "gulp": "~3.6.1",
+    "gulp-coffee": "~1.4.2",
+    "gulp-util": "~2.2.14",
+    "gulp-watch": "~0.6.2",
+    "gulp-browserify": "~0.5.0",
+    "gulp-print": "~1.0.3"
+  },
+  "devDependencies": {
+  }
+}

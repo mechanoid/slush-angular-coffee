@@ -21,8 +21,10 @@
   "homepage": "https://github.com/mechanoid/slush-angular-coffee",
   "dependencies": {
     "gulp": "~3.6.2",
-    "gulp-install": "~0.1.4",
     "gulp-conflict": "~0.1.1",
-    "gulp-template": "~0.1.1"
+    "gulp-template": "~0.1.1",
+    "inquirer": "~0.4.1",
+    "gulp-install": "mechanoid/gulp-install",
+    "gulp-print": "~1.0.3"
   }
 }
