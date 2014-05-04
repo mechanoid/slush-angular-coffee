@@ -22,7 +22,7 @@ var appPath = "./app",
     // compiled production files
     cssDistPath = cssPath + "/dist";
 
-gulp.task('defaukt', ['browserify'], function(){});
+gulp.task('default', ['browserify'], function(){});
 
 gulp.task('browserify', ['coffee'], function(){
   gulp.src(jsCompilePath + '/app.js')
