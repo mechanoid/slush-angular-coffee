@@ -11,9 +11,9 @@ var appPath = "./app",
     // uncompiled coffeescript files
     jsSrcPath = jsPath + "/src",
     // compiled js files
-    jsCompilePath = jsPath + "/compiled",
+    jsCompilePath = jsPath + "/compiled/.",
     // browserified production files
-    jsDistPath = jsPath + "/dist",
+    jsDistPath = jsPath + "/dist/.",
 
     // base directory for the apps css files
     cssPath = appPath + "/stylesheets",
@@ -26,19 +26,17 @@ gulp.task('default', ['browserify'], function(){});
 
 gulp.task('browserify', ['coffee'], function(){
   gulp.src(jsCompilePath + '/app.js')
-  .pipe(browserify({
-    insertGlobals : true
-  }))
-  .pipe(gulp.dest('jsDistPath'));
+  .pipe(browserify())
+  .pipe(gulp.dest(jsDistPath + ''));
 });
 
 gulp.task('coffee', function(){
-  gulp.src(jsSrcPath + '/*.coffee')
+  gulp.src(jsSrcPath + '/**/*.coffee')
   .pipe(print())
   .pipe(coffee().on('error', gutil.log).on('success', gutil.log))
-  .pipe(gulp.dest(jsCompilePath + '/.'));
+  .pipe(gulp.dest(jsCompilePath));
 });
 
 gulp.task('watch', function() {
-  gulp.watch('./javascripts/src/*.coffee', ['browserify']);
+  gulp.watch(jsSrcPath + '/**/*.coffee', ['browserify']);
 });
