@@ -3,7 +3,9 @@ var gulp = require('gulp'),
     print = require('gulp-print'),
     coffee = require('gulp-coffee'),
     watch = require('gulp-watch'),
-    browserify = require('gulp-browserify');
+    browserify = require('gulp-browserify'),
+    http = require('http'),
+    ecstatic = require('ecstatic');
 
 var appPath = "./app",
     // base directory for the apps js files
@@ -40,3 +42,11 @@ gulp.task('coffee', function(){
 gulp.task('watch', function() {
   gulp.watch(jsSrcPath + '/**/*.coffee', ['browserify']);
 });
+
+gulp.task('createServer', function() {
+  http.createServer(
+    ecstatic({ root: __dirname })
+  ).listen(8080);
+});
+
+gulp.task('server', ['browserify', 'watch', 'createServer']);

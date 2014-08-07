@@ -3,6 +3,7 @@ var gulp = require('gulp'),
     template = require('gulp-template'),
     install = require('gulp-install'),
     inquirer = require('inquirer'),
+    shell = require('gulp-shell'),
     print = require('gulp-print');
 
 var exec = require('child_process').exec;
@@ -19,7 +20,7 @@ var emptyAsEmptyString = function(input) {
 gulp.task('default', function (done) {
   inquirer.prompt([
     {type: 'input', name: 'appname', message: 'Give your app a name', default: gulp.args.join('-')},
-    {type: 'input', name: 'bowerlocation', message: 'Where to lay your vendor files installed by bower?', default: "vendor/javascripts"},
+    {type: 'input', name: 'bowerlocation', message: 'Where to lay your vendor files installed by bower?', default: "bower_components"},
     {type: 'input', name: 'license', message: 'What\'s license should this app contain?', default: "MIT"},
     {type: 'confirm', name: 'moveon', message: 'Continue?'}
   ],
@@ -34,9 +35,13 @@ gulp.task('default', function (done) {
       .pipe(template(answers))                 // Lodash template support
       .pipe(conflict(appFolder))                    // Confirms overwrites on file conflicts
       .pipe(gulp.dest(appFolder))                   // Without __dirname here = relative to cwd
-      .pipe(print())
-      .pipe(install(appFolder))
+      // .pipe(print())
+      // .pipe(install(appFolder))
       .on('end', function () {
+        done();
+
+        gulp.src('').pipe(shell('npm install', { "cwd": appFolder + '/' }));
+        gulp.src('').pipe(shell('bower install', { "cwd": appFolder + '/' }));
       });
   });
 });

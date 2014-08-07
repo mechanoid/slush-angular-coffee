@@ -1,0 +1,4 @@
+app/javascripts/compiled/*
+app/javascripts/dist/*
+bowerlocation/*
+node_modules/*
